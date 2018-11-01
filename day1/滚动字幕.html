@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./lib/vue2.5.17.js"></script>
+    <title>走马灯效果</title>
+</head>
+<body>
+    <div id="app">
+    <input type="button" name="" id="" value="滚动" @click="start_scroll">
+    <input type="button" name="" id="" value="停止" v-on:click="stop">
+    <h1>{{ msg }}</h1>
+    </div>
+    <script>
+        // 在VM示例中，如果想要获取data中的数据或methods中的方法，必须通过this进行访问，这里的this表示new出来的VM实例
+    var vm =new Vue({
+        el:'#app',
+        data:{
+            msg:'猥琐发育，别浪！',
+            intervalId:null
+        },
+        methods:{
+            start_scroll:function(){
+                if (this.intervalId != null) return;
+                // ES6之前的写法：var this_=this;并将函数里面的this改为this_;
+                 this.intervalId=setInterval( () => {   //(ES6) "=>"使得内部this指向外部this
+                    var head=this.msg.substring(0,1);
+                    var end=this.msg.substring(1);
+                    this.msg=end+head;
+                },400);
+            },
+            stop(){      //ES6的写法（省略:和function） 
+                clearInterval(this.intervalId);
+                this.intervalId=null;
+            }
+        }
+    })
+    </script>
+</body>
+</html>

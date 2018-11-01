@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 1.导入vue的包 -->
+    <script src="./lib/vue2.5.17.js"></script>
+</head>
+<body>
+    <div id="div1">       <!-- MVVM中的V -->    
+        <p>{{ msg }}</p>
+    </div>
+    <script>
+    // 2.创建一个vue实例（导入包之后，浏览器内存中就多了一个vue构造函数）
+    var vm = new Vue({     //MVVM中的VM
+        el:'#div1',
+        data:{ //存放el中要用的数据   MVVM中的M
+            msg:'hello vue'
+        }
+    })
+    </script>
+</body>
+</html>
